@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">HosMan Patient</string>
+    <string name="title_activity_main">HosMan Patient</string>
+    <string name="package_name">chan.hospital.patient</string>
+    <string name="custom_url_scheme">chan.hospital.patient</string>
+</resources>

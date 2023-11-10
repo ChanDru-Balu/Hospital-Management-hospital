@@ -1,0 +1,61 @@
+<ion-header [translucent]="true">
+  <ion-toolbar >
+    <ion-title style="text-align: center;">Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true"  > 
+
+
+  
+  <!-- Header inside Content -->
+  <div>
+    <!-- Logo and Brand Name -->
+    <div style="text-align: center; margin-top: 20%">
+      <img
+        src="/assets/icon/favicon.png"
+        alt=""
+        style="width: 33%; height: auto"
+      />
+      <h3 class="brandName">Brand Name</h3>
+    </div>
+  </div>
+
+  <!-- Form -->
+
+  <form [formGroup]="credentials" (ngSubmit)="login()" >
+
+    <div>
+      <ion-input
+      type="tel"
+      fill="outline"
+      label="Mobile"
+      formControlName="mobile"
+      labelPlacement="floating"
+      errorText="Invalid Mobile Number"
+      mobile
+    ></ion-input>
+
+    <ion-input
+        type="password"
+        fill="outline"
+        label="password"
+        formControlName="password"
+        labelPlacement="floating"
+        errorText="Invalid password"
+        password
+      ></ion-input>
+    </div>
+
+
+    <ion-button expand="full" type="submit" color="success" >Login</ion-button>
+
+  </form>
+
+
+</ion-content>
+
+<ion-footer>
+  <ion-button expand="full" (click)="goToRegisterPage()" color="secondary" >Register</ion-button>
+
+</ion-footer>

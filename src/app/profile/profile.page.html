@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>profile</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()" >back</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()" >Logout</ion-button>
+    </ion-buttons>
+  
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div>
+  <ion-list>
+    <ion-item>
+      <ion-label>Name : {{name}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Mobile : {{mobile}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Email : {{email}}</ion-label>
+    </ion-item>
+  </ion-list>
+  </div>
+
+</ion-content>

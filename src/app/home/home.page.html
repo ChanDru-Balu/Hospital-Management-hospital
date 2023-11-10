@@ -1,20 +1,34 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <!-- <ion-buttons slot="start">
+      <ion-button>Start</ion-button>
+    </ion-buttons> -->
+    <ion-title>Home</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="getProfile()" >Profile</ion-button>
+    </ion-buttons>
+  
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-content >
+  <!-- <ion-header>
     <ion-toolbar>
       <ion-title size="large">Blank</ion-title>
     </ion-toolbar>
-  </ion-header>
+  
+  </ion-header> -->
 
-  <div id="container">
+  <ion-searchbar (ionInput)="searchHospitals($event)" placeholder="Search Hospitals" clear-icon="trash-bin" ></ion-searchbar>
+
+  <ion-list>
+    <ion-card *ngFor="let hospital of hospitals" >
+      <ion-card-content (click)="openHospital(hospital)" > {{hospital.name}} </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <!-- <div id="container">
     <strong>Ready to create an app?</strong>
     <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  </div> -->
 </ion-content>

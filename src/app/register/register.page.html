@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button slot="start" (click)="goBack()" >back</ion-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Register</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+
+  <!-- Header inside Content -->
+  <div>
+    <!-- Logo and Brand Name -->
+    <div style="text-align: center; margin-top: 20%">
+      <img
+        src="/assets/icon/favicon.png"
+        alt=""
+        style="width: 33%; height: auto"
+      />
+      <h3 class="brandName">Brand Name</h3>
+    </div>
+  </div>
+
+  <!-- Form -->
+
+  <form [formGroup]="credentials!" (ngSubmit)="register()">
+    <div>
+      <ion-input
+        type="string"
+        fill="outline"
+        label="Name"
+        formControlName="name"
+        labelPlacement="floating"
+        errorText="Invalid Name"
+        name
+      ></ion-input>
+    </div>
+    <div>
+      <ion-input
+        type="tel"
+        fill="outline"
+        label="Mobile Number"
+        formControlName="mobile"
+        labelPlacement="floating"
+        errorText="Invalid Mobile Number"
+        mobile
+      ></ion-input>
+    </div>
+    <div>
+      <ion-input
+        type="email"
+        fill="outline"
+        label="Email"
+        formControlName="email"
+        labelPlacement="floating"
+        errorText="Invalid email"
+        email
+      ></ion-input>
+      <!-- <ion-note slot="error" *ngIf="(email?.dirty || email?.touched) && email?.errors" >Email in Invalid</ion-note> -->
+    </div>
+    <div>
+      <ion-input
+        type="password"
+        fill="outline"
+        label="password"
+        formControlName="password"
+        labelPlacement="floating"
+        errorText="Invalid password"
+        password
+      ></ion-input>
+    </div>
+    <div>
+      <ion-input
+        type="password"
+        fill="outline"
+        label="Confirm Password"
+        formControlName="cnfPassword"
+        labelPlacement="floating"
+        errorText="Invalid password"
+        cnfPassword
+      ></ion-input>
+    </div>
+
+
+    <ion-button  expand="block" type="submit" [disabled]="!credentials?.valid"> Register</ion-button>
+  </form>
+
+</ion-content>

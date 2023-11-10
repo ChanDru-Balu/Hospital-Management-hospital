@@ -1,0 +1,208 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button >Back</ion-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;" >{{hospitalName}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="getProfile()">Profile</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header>
+    <swiper-container
+      [slidesPerView]="1"
+      [loop]="true"
+      [pagination]="true"
+      [autoplay]="true"
+    >
+      <swiper-slide>
+        <img src="/assets/images/cost.png" alt="" />
+      </swiper-slide>
+      <swiper-slide>
+        <img src="/assets/images/cost.png" alt="" />
+      </swiper-slide>
+      <swiper-slide>
+        <img src="/assets/images/cost.png" alt="" />
+      </swiper-slide>
+    </swiper-container>
+  </ion-header>
+
+  <ion-grid>
+    <ion-row class="ion-margin">
+      <ion-col [routerLink]="['/upcoming', hospitalId , 'upcoming']"  class="ion-margin">
+        <div>
+          <ion-icon name="calendar-outline"></ion-icon>
+          <p>Upcoming</p>
+        </div>
+      </ion-col>
+      <ion-col [routerLink]="['/upcoming', hospitalId , 'history']" class="ion-margin">
+        <div>
+          <ion-icon name="file-tray-stacked-outline"></ion-icon>
+          <p>History</p>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-margin">
+      <ion-col class="ion-margin">
+        <div>
+          <ion-icon name="call-outline"></ion-icon>
+          <p>Contact</p>
+        </div>
+      </ion-col>
+      <ion-col class="ion-margin">
+        <div>
+          <ion-icon name="share-social-outline"></ion-icon>
+          <p>Share</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-button expand="block" id="open-modal">
+    New Appointment</ion-button
+  >
+
+  <!-- Modal Page -->
+
+  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancel</ion-button>
+          </ion-buttons>
+          <ion-title style="text-align: center;" >Booking</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+  
+      <ion-content class="ion-padding">
+     
+
+        <!-- Hospital Details -->
+        
+
+        <div>
+          <p style="text-align: center">Hospital Details</p>
+
+          <ion-item>
+            <ion-input
+              label="Hospital Name"
+              labelPlacement="stacked"
+              type="text"
+              readonly
+              [(ngModel)]="hospitalName"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+              label="Choose Date"
+              labelPlacement="stacked"
+              type="date"
+              [(ngModel)]="date"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+              label="Choose Time"
+              labelPlacement="stacked"
+              type="time"
+              [(ngModel)]="time"
+            ></ion-input>
+          </ion-item>
+
+    
+        </div>
+
+        <!-- sandBox Place -->
+
+        <!-- Patient Details -->
+
+        <div>
+          <p style="text-align: center">Hospital Details</p>
+
+          <ion-item>
+            <ion-input
+              label="Patient Name"
+              labelPlacement="stacked"
+              type="text"
+              [(ngModel)]="patientName"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+              label="Age"
+              labelPlacement="stacked"
+              type="number"
+              [(ngModel)]="patientAge"
+            ></ion-input>
+          </ion-item>
+
+          <ion-list>
+            <ion-radio-group style="text-align: center;" [(ngModel)]="gender">
+              <ion-row>
+                <ion-col size="4">
+                  <!-- <ion-item style="flex: 1;" [color]="selectedOption == 'Male' ? 'success' : 'tertiary'" > -->
+                    <ion-radio value="Male" [color]="gender == 'Male' ? 'success' : 'tertiary'" >
+                      <!-- <ion-label>Option 1</ion-label> -->
+                      Male
+                    </ion-radio>
+                  <!-- </ion-item> -->
+                </ion-col>
+          
+                <ion-col size="4" >
+                  <!-- <ion-item style="flex: 1;" [color]="selectedOption == 'Female' ? 'success' : 'tertiary'"> -->
+                    <ion-radio value="Female" [color]="gender == 'Female' ? 'success' : 'tertiary'">
+                      <!-- <ion-label>Option 2</ion-label> -->
+                      Female
+                    </ion-radio>
+                  <!-- </ion-item> -->
+                </ion-col>
+          
+                <ion-col size="4" >
+                  <!-- <ion-item style="flex: 1;" [color]="selectedOption == 'Others' ? 'success' : 'tertiary'"> -->
+                    <ion-radio value="Others" [color]="gender == 'Others' ? 'success' : 'tertiary'">
+                      <!-- <ion-label>Option 3</ion-label> -->
+                      Others
+                    </ion-radio>
+                  <!-- </ion-item> -->
+                </ion-col>
+              </ion-row>
+            </ion-radio-group>
+          </ion-list>
+
+          <ion-item>
+            <ion-select [(ngModel)]="treatment" label="Treatment">
+              <ion-select-option value="Fever">Fever</ion-select-option>
+              <ion-select-option value="Headache">Headache</ion-select-option>
+              <ion-select-option value="Body Pain">Body Pain</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-textarea [(ngModel)]="description" label="Description" labelPlacement="floating" fill="solid" placeholder="Type something here"></ion-textarea>
+          </ion-item>
+        
+          <ion-button expand="block" id="open-modal" (click)="newAppointment()">
+            Book Token</ion-button
+          >
+          
+
+        </div>
+
+
+
+      </ion-content>
+  
+    </ng-template>
+  </ion-modal>
+</ion-content>

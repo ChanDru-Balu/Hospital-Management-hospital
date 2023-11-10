@@ -1,0 +1,74 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()" >Back</ion-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;" >{{ (page == 'upcoming' ) ? 'Upcoming' : 'History' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-header>
+      <swiper-container
+        [slidesPerView]="1"
+        [loop]="true"
+        [pagination]="true"
+        [autoplay]="true"
+      >
+        <swiper-slide>
+          <img src="/assets/images/cost.png" alt="" />
+        </swiper-slide>
+        <swiper-slide>
+          <img src="/assets/images/cost.png" alt="" />
+        </swiper-slide>
+        <swiper-slide>
+          <img src="/assets/images/cost.png" alt="" />
+        </swiper-slide>
+      </swiper-container>
+    </ion-header>
+
+    <div>
+      <ion-card *ngFor="let appointment of appointments" >
+        <ion-grid style="background: #EBE8E8;">
+          <ion-row >
+            <!-- Title at the start -->
+            <ion-col>
+              <ion-card-title style="font-weight: 700;"> Token Details </ion-card-title>
+            </ion-col>
+  
+            <!-- Title at the end -->
+            <ion-col class="ion-text-end">
+              <ion-card-title> {{appointment.date}}-{{appointment.time}} </ion-card-title>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      
+        <ion-card-content style="background: #F6F6F6;"> 
+
+          <!-- Booking Details -->
+          <div>
+            <p>Hospital: {{appointment.hospitalName}}</p>
+            <p>Time & Date : {{appointment.date}} - {{appointment.time}}</p>
+
+            <!-- Patient Details -->
+
+            <div style="padding: 5px; background: #FFFFFF;font-weight:600" >
+              <p>Patient: {{appointment.patientName}}</p>
+              <p>Age: {{appointment.patientAge}} Yrs</p>
+              <p>Gender : {{appointment.gender}}</p>
+              <p>Dieseas: {{appointment.treatment}}</p>
+            </div>
+
+            <ion-button expand="full" color="danger" *ngIf="page == 'upcoming'" (click)="cancelAppointment(appointment)" >Cancel</ion-button>
+            <ion-button expand="full" [color]="(appointment.status == 2) ? 'success' : 'secondary'" *ngIf="page == 'history'" >{{ (appointment.status == 1 ? 'Cancelled' : 'Completed' ) }}</ion-button>
+
+          </div>
+          
+
+
+          
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+</ion-content>

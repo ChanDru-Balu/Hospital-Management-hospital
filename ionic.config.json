@@ -1,5 +1,5 @@
 {
-  "name": "hospital",
+  "name": "auth",
   "integrations": {
     "capacitor": {}
   },
