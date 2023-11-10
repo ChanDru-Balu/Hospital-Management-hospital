@@ -19,7 +19,7 @@ export class ApiService {
   constructor(private fireStore: Firestore) {}
 
   async getHospitals() {
-    let q = query(collection(this.fireStore, 'hospital'));
+    let q = query(collection(this.fireStore, 'users'),where ('type','==',1 ))
     const snapshot = await getDocs(q);
     console.log({ snapshot });
     let hospitals: any[] = [];

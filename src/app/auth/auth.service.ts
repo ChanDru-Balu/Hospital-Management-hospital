@@ -36,7 +36,7 @@ export class AuthService {
     try {
       let q = query(
         collection(this.firestore, 'users'),
-        where('mobile', '>=', data.mobile)
+        where('mobile', '==', data.mobile)
       );
       let snapshot = await getDocs(q);
       console.log({ snapshot });
@@ -45,12 +45,15 @@ export class AuthService {
         snapshot.forEach((doc) => {
           // Access the document data using doc.data()
           console.log('Document data:', doc.data());
-          response = {
-            status: false,
-            message: 'Mobile Number Already Exist',
-            error: 'mobile number exist',
-          };
-          return response;
+          if(doc.data()['mobile'] == data.mobile ) {
+            response = {
+              status: false,
+              message: 'Mobile Number Already Exist',
+              error: 'mobile number exist',
+            };
+            return response;
+          }
+      
         });
       } else {
         // The query result is empty

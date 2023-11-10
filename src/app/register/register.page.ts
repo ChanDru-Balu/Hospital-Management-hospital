@@ -53,7 +53,13 @@ export class RegisterPage implements OnInit {
       mobile : ['',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
       email : ['',[Validators.required,Validators.email]],
       password : ['',[Validators.required,Validators.minLength(8)]],
-      cnfPassword : ['',[Validators.required,Validators.minLength(8)]]
+      cnfPassword : ['',[Validators.required,Validators.minLength(8)]],
+      address : ['',[Validators.required]],
+      workStartTime : ['',[Validators.required]],
+      workEndTime : ['',[Validators.required]],
+      breakStartTime : ['',[Validators.required]],
+      breakEndTime : ['',[Validators.required]],
+      type: 1
     })
   }
 
