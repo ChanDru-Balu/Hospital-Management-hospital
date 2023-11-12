@@ -37,6 +37,25 @@ export class HospitalPage implements OnInit {
     private toastController: ToastController
   ) { }
 
+
+  // Sandbox Started
+
+  
+  // validateDateAndTime(ev: any) {
+  //   const dateString = ev.detail.value;
+  //   console.log({dateString}) 
+  //   const date = new Date(dateString);
+  //   const hour = date.getHours();
+  //   const minute = date.getMinutes();
+    
+  //   // Prevent the user from selecting the 1.59AM option.
+  //   return (hour !== 1 || minute !== 59) && (date.getDay() !== 0 && date.getDay() !== 6) && (minute >= 0 && minute < 60);
+  //   }
+    
+
+
+
+  // andBox End
   
   cancel() {
     this.modal.dismiss(null, 'cancel');

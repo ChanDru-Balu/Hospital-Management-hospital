@@ -116,6 +116,7 @@
               labelPlacement="stacked"
               type="time"
               [(ngModel)]="time"
+              min="08:00:00" max="20:00:00"
             ></ion-input>
           </ion-item>
 
@@ -123,7 +124,8 @@
         </div>
 
         <!-- sandBox Place -->
-
+        <!-- <ion-datetime [isDateEnabled]="isWeekday" presentation="time"></ion-datetime> -->
+        <!-- <ion-datetime (ionChange)="validateDateAndTime($event)"></ion-datetime> -->
         <!-- Patient Details -->
 
         <div>
