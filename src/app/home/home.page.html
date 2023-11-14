@@ -1,34 +1,69 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <!-- <ion-buttons slot="start">
-      <ion-button>Start</ion-button>
-    </ion-buttons> -->
-    <ion-title>Home</ion-title>
+    <ion-title>Appointments</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="getProfile()" >Profile</ion-button>
+      <ion-button (click)="getProfile()" >
+        <ion-icon name="medkit-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
   
   </ion-toolbar>
 </ion-header>
 
+<ion-segment mode="ios" [ngModel]="page" (ionChange)="segmentChanged($event)" >
+  <ion-segment-button value="upcoming">
+    <ion-label>Upcoming</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="complete">
+    <ion-label>Completed</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="cancel">
+    <ion-label>Cancelled</ion-label>
+  </ion-segment-button>
+</ion-segment>
+
+
 <ion-content >
-  <!-- <ion-header>
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  
-  </ion-header> -->
 
-  <ion-searchbar (ionInput)="searchHospitals($event)" placeholder="Search Hospitals" clear-icon="trash-bin" ></ion-searchbar>
 
-  <ion-list>
-    <ion-card *ngFor="let hospital of hospitals" >
-      <ion-card-content (click)="openHospital(hospital)" > {{hospital.name}} </ion-card-content>
+  <div *ngIf="page == 'upcoming'" >
+    <ion-card *ngFor="let appointment of appointments" >
+      <ion-grid style="background: #EBE8E8;">
+        <ion-row >
+          <!-- Title at the start -->
+          <ion-col>
+            <ion-card-title style="font-weight: 700;"> Token Details </ion-card-title>
+          </ion-col>
+
+          <!-- Title at the end -->
+          <ion-col class="ion-text-end">
+            <ion-card-subtitle> {{appointment.date}}-{{appointment.time}} </ion-card-subtitle>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    
+      <ion-card-content style="background: #F6F6F6;"> 
+
+        <!-- Booking Details -->
+        <div>
+          <p>Hospital: {{appointment.hospitalName}}</p>
+          <p>Time & Date : {{appointment.date}} - {{appointment.time}}</p>
+
+          <!-- Patient Details -->
+
+          <div style="padding: 5px; background: #FFFFFF;font-weight:600" >
+            <p>Patient: {{appointment.patientName}}</p>
+            <p>Age: {{appointment.patientAge}} Yrs</p>
+            <p>Gender : {{appointment.gender}}</p>
+            <p>Dieseas: {{appointment.treatment}}</p>
+          </div>
+
+        </div>
+        
+
+
+        
+      </ion-card-content>
     </ion-card>
-  </ion-list>
-
-  <!-- <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div> -->
+  </div>
 </ion-content>
