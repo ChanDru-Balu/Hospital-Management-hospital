@@ -26,7 +26,7 @@ export class HospitalPage implements OnInit {
   date: any;
   description: any;
   id: any;
-  appointments: any;
+  admits: any;
 
   
 
@@ -80,7 +80,7 @@ export class HospitalPage implements OnInit {
       console.log({params})
       const userId = params.get('userId');
       console.log({userId})
-      // this.getPatientAppointments(appointment);
+      this.getPatientAppointments(userId);
     });  
   }
 
@@ -92,10 +92,10 @@ export class HospitalPage implements OnInit {
 
     this.id = userId;
 
-    let appointments = await this.api.getPatientAppointments({id:this.id});
-    console.log({appointments})
-    this.appointments = appointments ? appointments['data'] : []
-    console.log("PatientAppointments:",this.appointments)
+    let admits = await this.api.getPatientAppointments({id:this.id});
+    console.log({admits})
+    this.admits = admits ? admits['data'] : []
+    console.log("PatientAppointments:",this.admits)
 
     await loading.dismiss();
   }
