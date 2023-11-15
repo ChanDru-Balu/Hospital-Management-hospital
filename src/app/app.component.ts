@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(
     private navController : NavController
   ) {
-    const id = localStorage.getItem('id')
+    const id = localStorage.getItem('hospitalId')
     console.log({id})
     if(id){
       this.navController.navigateRoot('home')

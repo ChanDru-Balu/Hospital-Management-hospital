@@ -122,6 +122,55 @@ export class ApiService {
     }
   }
 
+  async getPatientAppointments(data:any){
+
+    console.log({data});
+    let q : any;
+    let response : any ;
+    console.log("hospitalId:",data['id']);
+
+    try {
+
+        q = query(collection(this.fireStore, 'appointments'),
+          where('userId', '==', data['id'] )
+        );
+      console.log({q})
+      let snapshot = await getDocs(q);
+      console.log({ snapshot });
+      if (!snapshot.empty) {
+        let appointments: any[] = [];
+        // The query returned one or more documents
+        snapshot.forEach((doc) => {
+          // Access the document data using doc.data()
+          console.log('Document data:', doc.data());
+          let data: any = doc.data();
+          data['id'] = doc.id;
+          appointments.push(data) 
+        });
+        console.log({appointments})
+        response = {
+          status: true,
+          message: 'Appointments',
+          data: appointments
+        };
+        return response;
+      } else {
+        // The query result is empty
+        console.log('No documents found');
+      }
+
+      return response;
+    } catch (e) {
+      console.log({ e });
+      response = {
+        status: false,
+        message: 'Failed to Get data',
+        error: e,
+      };
+      return response;
+    }
+  }
+
   async changeAppointment(data:any){
     try{
       const dataRef: any = collection(this.fireStore, 'appointments');

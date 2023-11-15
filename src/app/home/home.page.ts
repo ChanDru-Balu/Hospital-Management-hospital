@@ -34,7 +34,7 @@ export class HomePage {
     const loading = await this.loadingController.create();
     await loading.present();
 
-    this.id = localStorage.getItem('id')
+    this.id = localStorage.getItem('hospitalId')
 
     let appointments = await this.api.getAppointments({id:this.id,page:this.page});
     console.log({appointments})
@@ -42,6 +42,16 @@ export class HomePage {
     console.log("appointments:",this.appointments)
 
     await loading.dismiss();
+  }
+
+  async getPatientDetails(appointment:any){
+
+    await this.router.navigate(['/hospital'], {
+      queryParams: {
+        userId: appointment.userId
+      }
+    });
+
   }
 
   async segmentChanged(ev:any){

@@ -45,7 +45,7 @@ export class LoginPage implements OnInit {
     const user = await this.auth.login(this.credentials.value);
     console.log({user})
     let data = user.user;
-    localStorage.setItem('id',data.id)
+    localStorage.setItem('hospitalId',data.id)
     localStorage.setItem('mobile',data.userDetails.mobile)
     localStorage.setItem('email',data.userDetails.email)
     localStorage.setItem('name',data.userDetails.name)

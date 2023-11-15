@@ -52,7 +52,7 @@
           <!-- Patient Details -->
 
           <div style="padding: 5px; background: #FFFFFF;font-weight:600" >
-            <p>Patient: {{appointment.patientName}}</p>
+            <p (click)="getPatientDetails(appointment)" >Patient: {{appointment.patientName}}</p>
             <p>Age: {{appointment.patientAge}} Yrs</p>
             <p>Gender : {{appointment.gender}}</p>
             <p>Dieseas: {{appointment.treatment}}</p>

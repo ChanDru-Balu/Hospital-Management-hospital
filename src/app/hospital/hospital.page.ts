@@ -25,6 +25,8 @@ export class HospitalPage implements OnInit {
   treatment:any;
   date: any;
   description: any;
+  id: any;
+  appointments: any;
 
   
 
@@ -74,16 +76,28 @@ export class HospitalPage implements OnInit {
 
 
   ngOnInit() {
-    this.route.queryParamMap.subscribe((params) => {
+    this.route.queryParamMap.subscribe((params:any) => {
       console.log({params})
-      const hospitalName = params.get('hospitalName');
-      const hospitalId = params.get('hospitalId');
-      if (hospitalId) {
-        console.log({hospitalId}); // This will log Hospital ID
-        this.hospitalId = hospitalId
-        this.hospitalName = hospitalName
-      }
+      const userId = params.get('userId');
+      console.log({userId})
+      // this.getPatientAppointments(appointment);
     });  
+  }
+
+  async getPatientAppointments(userId:any){
+    console.log({userId})
+
+    const loading = await this.loadingController.create();
+    await loading.present();
+
+    this.id = userId;
+
+    let appointments = await this.api.getPatientAppointments({id:this.id});
+    console.log({appointments})
+    this.appointments = appointments ? appointments['data'] : []
+    console.log("PatientAppointments:",this.appointments)
+
+    await loading.dismiss();
   }
 
   async getProfile(){
